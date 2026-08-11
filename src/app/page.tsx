@@ -1,69 +1,205 @@
+import {
+  ArrowRight,
+  Banknote,
+  Car,
+  CarFront,
+  ChevronDown,
+  CircleCheck,
+  Clock3,
+  FileText,
+  Fuel,
+  KeyRound,
+  MapPin,
+  MessageCircle,
+  Phone,
+  PhoneCall,
+  Send,
+  ShieldCheck,
+  Sparkles,
+  Truck,
+  Wrench,
+} from "lucide-react";
 import Image from "next/image";
 
-export default function Home() {
+const phoneNumber = "+38 (067) 555-24-24";
+
+const categories = [
+  {
+    title: "Авто на українській реєстрації",
+    description: "Цілі, з пробігом та б/у автомобілі будь-яких марок.",
+    icon: CarFront,
+  },
+  {
+    title: "Авто після ДТП",
+    description: "Биті, аварійні та ті, що не на ходу.",
+    icon: Wrench,
+  },
+  {
+    title: "Нерозмитнені авто",
+    description: "Євробляхи та авто на іноземній реєстрації.",
+    icon: FileText,
+  },
+  {
+    title: "На розбирання та металобрухт",
+    description: "Заберемо старе або несправне авто евакуатором.",
+    icon: Truck,
+  },
+  {
+    title: "Кредитні та заставні авто",
+    description: "Допоможемо знайти прозоре рішення вашої ситуації.",
+    icon: KeyRound,
+  },
+  {
+    title: "Мототехніка та комерційний транспорт",
+    description: "Мотоцикли, буси, пікапи та спецтехніка.",
+    icon: Fuel,
+  },
+];
+
+const cars = [
+  {
+    name: "Ford Focus",
+    year: "2017",
+    image:
+      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    name: "Daewoo Lanos",
+    year: "2013",
+    image:
+      "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    name: "Skoda Octavia",
+    year: "2014",
+    image:
+      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    name: "Mazda CX-5",
+    year: "2013",
+    image:
+      "https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    name: "ВАЗ 2110",
+    year: "2007",
+    image:
+      "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    name: "Audi A6",
+    year: "2012",
+    image:
+      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=80",
+  },
+];
+
+const faqs = [
+  {
+    question: "Як відбувається оцінка вартості авто?",
+    answer:
+      "Надішліть фото автомобіля у месенджер або заповніть форму. За 5 хвилин назвемо попередню вартість, а остаточно узгодимо її під час огляду.",
+  },
+  {
+    question: "Які документи потрібні для продажу?",
+    answer:
+      "Потрібні паспорт, ІПН і техпаспорт. Якщо ви дієте від імені власника — знадобиться чинна довіреність.",
+  },
+  {
+    question: "Чи виїжджаєте ви по Харківській області?",
+    answer:
+      "Так. Виїзд фахівця по Харкову та області безкоштовний. За потреби також безкоштовно надішлемо евакуатор.",
+  },
+  {
+    question: "Скільки часу займає викуп?",
+    answer:
+      "Зазвичай від 1 до 2 годин: огляд, оформлення договору та розрахунок готівкою або переказом у день звернення.",
+  },
+];
+
+function Hero() {
+  const benefits = ["Оцінка за 5 хв", "Безкоштовний евакуатор", "Розрахунок готівкою на місці"];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <section id="top" className="relative isolate overflow-hidden bg-slate-950 pt-28 text-white sm:pt-36">
+      <div className="absolute inset-0 -z-20 bg-[url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=85')] bg-cover bg-center opacity-30" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950 via-slate-950/95 to-slate-950/45" />
+      <div className="absolute -left-28 top-28 -z-10 size-80 rounded-full bg-orange-500/15 blur-3xl" />
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-16 sm:px-6 sm:pb-20 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-16 lg:px-8 lg:pb-24">
+        <div className="max-w-3xl">
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-orange-400/25 bg-orange-400/10 px-3 py-1.5 text-xs font-semibold text-orange-300">
+            <Sparkles className="size-3.5" />
+            Викуп авто в Харкові 24/7
+          </div>
+          <h1 className="text-4xl font-black leading-[1.05] tracking-tight text-balance sm:text-5xl lg:text-6xl">
+            Терміновий автовикуп у Харкові та області <span className="text-orange-400">— Гроші за 1 годину</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
+            Викупимо авто в будь-якому стані. Оцінка по фото за 5 хвилин, безкоштовний виїзд та евакуатор.
           </p>
+          <ul className="mt-8 grid gap-3 text-sm font-medium text-slate-200 sm:grid-cols-3 sm:gap-4">
+            {benefits.map((benefit) => (
+              <li key={benefit} className="flex items-center gap-2.5">
+                <CircleCheck className="size-5 shrink-0 text-orange-400" />
+                {benefit}
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+        <form id="оцінка" className="scroll-mt-24 rounded-2xl border border-white/10 bg-slate-900/95 p-5 shadow-2xl shadow-black/30 backdrop-blur sm:p-6">
+          <div className="mb-5 flex items-start gap-3">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-orange-500 text-slate-950"><Banknote className="size-5" /></span>
+            <div>
+              <h2 className="text-xl font-bold">Швидка оцінка авто</h2>
+              <p className="mt-0.5 text-sm text-slate-400">Зателефонуємо протягом 5 хвилин</p>
+            </div>
+          </div>
+          <div className="space-y-3">
+            <label className="block">
+              <span className="sr-only">Марка та модель</span>
+              <input required name="car" placeholder="Марка / Модель" className="form-input" />
+            </label>
+            <label className="block">
+              <span className="sr-only">Рік випуску</span>
+              <input required name="year" inputMode="numeric" placeholder="Рік випуску" className="form-input" />
+            </label>
+            <label className="block">
+              <span className="sr-only">Номер телефону</span>
+              <input required name="phone" inputMode="tel" placeholder="Ваш телефон" className="form-input" />
+            </label>
+            <button type="submit" className="flex w-full items-center justify-center gap-2 rounded-xl bg-orange-500 px-5 py-3.5 text-sm font-extrabold text-slate-950 transition hover:bg-orange-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300">
+              Отримати оцінку <ArrowRight className="size-4" />
+            </button>
+          </div>
+          <p className="mt-3 text-center text-xs leading-4 text-slate-500">Натискаючи кнопку, ви погоджуєтесь на обробку персональних даних.</p>
+        </form>
+      </div>
+    </section>
   );
+}
+
+function SectionHeading({ eyebrow, title, text }: { eyebrow: string; title: string; text?: string }) {
+  return <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-12"><p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-orange-400">{eyebrow}</p><h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl">{title}</h2>{text && <p className="mt-4 text-slate-400">{text}</p>}</div>;
+}
+
+function Categories() {
+  return <section id="why-us" className="bg-slate-950 px-4 py-20 sm:px-6 sm:py-24 lg:px-8"><span id="services" className="relative -top-28 block" /><div className="mx-auto max-w-7xl"><SectionHeading eyebrow="Послуги" title="Що ми викуповуємо" text="Оцінюємо транспорт чесно й викуповуємо без зайвого клопоту." /><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{categories.map(({ title, description, icon: Icon }) => <article key={title} className="group rounded-2xl border border-white/8 bg-slate-900/60 p-5 transition duration-300 hover:-translate-y-1 hover:border-orange-400/40 hover:bg-slate-900 sm:p-6"><span className="flex size-11 items-center justify-center rounded-xl bg-orange-500/10 text-orange-400 transition group-hover:bg-orange-500 group-hover:text-slate-950"><Icon className="size-5" /></span><h3 className="mt-5 text-lg font-bold text-white">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-400">{description}</p></article>)}</div></div></section>;
+}
+
+function RecentCars() {
+  return <section id="reviews" className="border-y border-white/5 bg-zinc-900 px-4 py-20 sm:px-6 sm:py-24 lg:px-8"><span id="blog" className="relative -top-28 block" /><div className="mx-auto max-w-7xl"><SectionHeading eyebrow="Нещодавно" title="Останні викуплені авто" text="Приклади автомобілів, які ми вже викупили у власників." /><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{cars.map((car) => <article key={car.name} className="overflow-hidden rounded-2xl border border-white/8 bg-slate-950"><div className="relative aspect-[16/10] overflow-hidden"><Image src={car.image} alt={`${car.name} ${car.year}`} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition duration-500 hover:scale-105" /><span className="absolute left-3 top-3 rounded-md bg-slate-950/90 px-2.5 py-1 text-xs font-bold text-orange-300">Викуплено</span></div><div className="flex items-center justify-between p-4"><h3 className="font-bold text-white">{car.name}</h3><span className="text-sm text-slate-400">{car.year} рік</span></div></article>)}</div></div></section>;
+}
+
+function FAQ() {
+  return <section id="faq" className="bg-slate-950 px-4 py-20 sm:px-6 sm:py-24 lg:px-8"><div className="mx-auto max-w-3xl"><SectionHeading eyebrow="Відповіді" title="Часті запитання" /> <div className="space-y-3">{faqs.map((faq, index) => <details key={faq.question} className="group rounded-xl border border-white/10 bg-slate-900/60 px-5 open:border-orange-400/40" open={index === 0}><summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-bold text-white"><span>{faq.question}</span><ChevronDown className="size-5 shrink-0 text-orange-400 transition group-open:rotate-180" /></summary><p className="max-w-2xl pb-5 text-sm leading-6 text-slate-400">{faq.answer}</p></details>)}</div></div></section>;
+}
+
+function Footer() {
+  return <footer id="contacts" className="border-t border-white/10 bg-zinc-950 px-4 pb-8 pt-14 sm:px-6 lg:px-8"><div className="mx-auto max-w-7xl"><div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]"><div><a href="#top" className="flex items-center gap-2.5"><span className="flex size-10 items-center justify-center rounded-xl bg-orange-500 text-slate-950"><Car className="size-6" strokeWidth={2.5} /></span><span className="text-lg font-extrabold tracking-tight text-white">АвтоВикуп <span className="text-orange-400">Харків</span></span></a><p className="mt-4 max-w-sm text-sm leading-6 text-slate-400">Швидко та чесно викупимо автомобіль у будь-якому стані. Оформлення та розрахунок в день звернення.</p></div><div><h3 className="text-sm font-bold uppercase tracking-wider text-white">Контакти</h3><a href="tel:+380675552424" className="mt-4 flex items-center gap-2 text-base font-bold text-orange-400 hover:text-orange-300"><Phone className="size-4" />{phoneNumber}</a><p className="mt-3 flex items-center gap-2 text-sm text-slate-400"><MapPin className="size-4 text-orange-400" />м. Харків та область</p><p className="mt-2 flex items-center gap-2 text-sm text-slate-400"><Clock3 className="size-4 text-orange-400" />Працюємо 24/7</p></div><div><h3 className="text-sm font-bold uppercase tracking-wider text-white">Напишіть нам</h3><div className="mt-4 flex gap-2"><a aria-label="Telegram" href="#top" className="social-link bg-sky-500/15 text-sky-300 hover:bg-sky-500 hover:text-white"><Send className="size-4" /></a><a aria-label="Viber" href="#top" className="social-link bg-violet-500/15 text-violet-300 hover:bg-violet-500 hover:text-white"><MessageCircle className="size-4" /></a><a aria-label="WhatsApp" href="#top" className="social-link bg-emerald-500/15 text-emerald-300 hover:bg-emerald-500 hover:text-white"><PhoneCall className="size-4" /></a></div><p className="mt-4 flex items-center gap-2 text-sm text-slate-400"><ShieldCheck className="size-4 text-orange-400" />Безпечна угода</p></div></div><div className="mt-12 border-t border-white/10 pt-6 text-center text-xs text-slate-500">© {new Date().getFullYear()} АвтоВикуп Харків. Усі права захищені.</div></div></footer>;
+}
+
+export default function Home() {
+  return <div className="home-page min-h-screen overflow-x-hidden bg-slate-950"><main><Hero /><Categories /><RecentCars /><FAQ /></main><Footer /></div>;
 }

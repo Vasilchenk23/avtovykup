@@ -1,0 +1,10 @@
+import CarEvaluationForm from "./CarEvaluationForm";
+import { CheckCircle2, Clock3, ShieldCheck, Truck } from "lucide-react";
+
+export default function ServicePage({ title, description, benefits }: { title: string; description: string; benefits: string[] }) {
+  return <main className="bg-slate-950 pt-28 text-white sm:pt-36"><section className="border-b border-white/5 px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8"><div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_410px] lg:items-center"><div><p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-orange-400">Послуги автовикупу</p><h1 className="max-w-3xl text-4xl font-black tracking-tight sm:text-5xl">{title}</h1><p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">{description}</p><ul className="mt-8 grid gap-3 sm:grid-cols-2">{benefits.map((benefit) => <li key={benefit} className="flex items-center gap-2.5 text-sm text-slate-200"><CheckCircle2 className="size-5 shrink-0 text-orange-400" />{benefit}</li>)}</ul></div><CarEvaluationForm title="Дізнайтесь вартість авто" /></div></section><section className="px-4 py-16 sm:px-6 lg:px-8"><div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-3"><Info icon={<Clock3 className="size-5" />} title="Швидко" text="Оцінка по фото за 5 хвилин і оформлення в день звернення." /><Info icon={<Truck className="size-5" />} title="Безкоштовно" text="Виїзд фахівця та евакуатор по Харкову й області." /><Info icon={<ShieldCheck className="size-5" />} title="Безпечно" text="Прозорий договір та повний розрахунок на місці." /></div></section></main>;
+}
+
+function Info({ icon, title, text }: { icon: React.ReactNode; title: string; text: string }) {
+  return <article className="rounded-2xl border border-white/10 bg-slate-900/60 p-6"><span className="flex size-10 items-center justify-center rounded-xl bg-orange-500/10 text-orange-400">{icon}</span><h2 className="mt-4 font-bold text-white">{title}</h2><p className="mt-2 text-sm leading-6 text-slate-400">{text}</p></article>;
+}

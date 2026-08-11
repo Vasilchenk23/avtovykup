@@ -1,26 +1,54 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: Arial, Helvetica, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #020617;
+  color: #f8fafc;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.home-page > footer {
+  display: none;
+}
+
+.social-link {
+  display: inline-flex;
+  width: 2.25rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.625rem;
+  transition: color 150ms ease, background-color 150ms ease, transform 150ms ease;
+}
+
+.social-link:hover {
+  transform: translateY(-2px);
+}
+
+.form-input {
+  width: 100%;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 0.75rem;
+  background: rgb(15 23 42 / 0.9);
+  padding: 0.8125rem 1rem;
+  font-size: 0.875rem;
+  color: #f8fafc;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.form-input::placeholder {
+  color: #94a3b8;
+}
+
+.form-input:focus {
+  border-color: #fb923c;
+  box-shadow: 0 0 0 3px rgb(249 115 22 / 0.15);
 }

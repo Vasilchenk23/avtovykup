@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# АвтоВикуп Харків
 
-## Getting Started
+Сучасний сайт сервісу термінового викупу автомобілів у Харкові та області. Допомагає швидко залишити заявку на оцінку авто, ознайомитися з послугами та знайти відповіді на поширені запитання.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
+![React](https://img.shields.io/badge/React-19-087ea4?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript&logoColor=white)
+
+## Можливості
+
+- Головна сторінка з формою швидкої оцінки автомобіля.
+- Окремі сторінки послуг: терміновий викуп, авто після ДТП, нерозмитнені авто та викуп на розбирання.
+- Сторінки «Чому ми», блог, FAQ та контакти.
+- Адаптивний інтерфейс для телефонів, планшетів і комп’ютерів.
+- SEO-метадані та оптимізовані зображення.
+
+## Технології
+
+- [Next.js 16](https://nextjs.org/)
+- [React 19](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Lucide](https://lucide.dev/) — іконки
+
+## Запуск локально
+
+Потрібен [Node.js](https://nodejs.org/) 20.9 або новіший.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Після запуску сайт буде доступний за адресою [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Команди
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev    # локальна розробка
+npm run lint   # перевірка коду
+npm run build  # production-збірка
+npm run start  # запуск production-збірки
+```
 
-## Learn More
+## Структура проєкту
 
-To learn more about Next.js, take a look at the following resources:
+```text
+src/
+├── app/          # сторінки, маршрути та глобальні стилі
+└── components/   # повторно використовувані компоненти інтерфейсу
+public/           # статичні файли
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Публікація
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Проєкт можна розгорнути на [Vercel](https://vercel.com/new): підключте GitHub-репозиторій, і платформа автоматично виконає збірку після кожного push у основну гілку.
