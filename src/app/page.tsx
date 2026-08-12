@@ -1,6 +1,4 @@
 import {
-  ArrowRight,
-  Banknote,
   Car,
   CarFront,
   ChevronDown,
@@ -10,18 +8,18 @@ import {
   Fuel,
   KeyRound,
   MapPin,
-  MessageCircle,
   Phone,
-  PhoneCall,
-  Send,
   ShieldCheck,
   Sparkles,
   Truck,
   Wrench,
 } from "lucide-react";
 import Image from "next/image";
+import CarEvaluationForm from "../components/CarEvaluationForm";
+import SocialLinks from "../components/SocialLinks";
+import { PHONE_DISPLAY, PHONE_HREF } from "../data/contact";
 
-const phoneNumber = "+38 (067) 555-24-24";
+const phoneNumber = PHONE_DISPLAY;
 
 const categories = [
   {
@@ -148,33 +146,7 @@ function Hero() {
           </ul>
         </div>
 
-        <form id="оцінка" className="scroll-mt-24 rounded-2xl border border-white/10 bg-slate-900/95 p-5 shadow-2xl shadow-black/30 backdrop-blur sm:p-6">
-          <div className="mb-5 flex items-start gap-3">
-            <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-orange-500 text-slate-950"><Banknote className="size-5" /></span>
-            <div>
-              <h2 className="text-xl font-bold">Швидка оцінка авто</h2>
-              <p className="mt-0.5 text-sm text-slate-400">Зателефонуємо протягом 5 хвилин</p>
-            </div>
-          </div>
-          <div className="space-y-3">
-            <label className="block">
-              <span className="sr-only">Марка та модель</span>
-              <input required name="car" placeholder="Марка / Модель" className="form-input" />
-            </label>
-            <label className="block">
-              <span className="sr-only">Рік випуску</span>
-              <input required name="year" inputMode="numeric" placeholder="Рік випуску" className="form-input" />
-            </label>
-            <label className="block">
-              <span className="sr-only">Номер телефону</span>
-              <input required name="phone" inputMode="tel" placeholder="Ваш телефон" className="form-input" />
-            </label>
-            <button type="submit" className="flex w-full items-center justify-center gap-2 rounded-xl bg-orange-500 px-5 py-3.5 text-sm font-extrabold text-slate-950 transition hover:bg-orange-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300">
-              Отримати оцінку <ArrowRight className="size-4" />
-            </button>
-          </div>
-          <p className="mt-3 text-center text-xs leading-4 text-slate-500">Натискаючи кнопку, ви погоджуєтесь на обробку персональних даних.</p>
-        </form>
+        <CarEvaluationForm />
       </div>
     </section>
   );
@@ -197,7 +169,7 @@ function FAQ() {
 }
 
 function Footer() {
-  return <footer id="contacts" className="border-t border-white/10 bg-zinc-950 px-4 pb-8 pt-14 sm:px-6 lg:px-8"><div className="mx-auto max-w-7xl"><div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]"><div><a href="#top" className="flex items-center gap-2.5"><span className="flex size-10 items-center justify-center rounded-xl bg-orange-500 text-slate-950"><Car className="size-6" strokeWidth={2.5} /></span><span className="text-lg font-extrabold tracking-tight text-white">АвтоВикуп <span className="text-orange-400">Харків</span></span></a><p className="mt-4 max-w-sm text-sm leading-6 text-slate-400">Швидко та чесно викупимо автомобіль у будь-якому стані. Оформлення та розрахунок в день звернення.</p></div><div><h3 className="text-sm font-bold uppercase tracking-wider text-white">Контакти</h3><a href="tel:+380675552424" className="mt-4 flex items-center gap-2 text-base font-bold text-orange-400 hover:text-orange-300"><Phone className="size-4" />{phoneNumber}</a><p className="mt-3 flex items-center gap-2 text-sm text-slate-400"><MapPin className="size-4 text-orange-400" />м. Харків та область</p><p className="mt-2 flex items-center gap-2 text-sm text-slate-400"><Clock3 className="size-4 text-orange-400" />Працюємо 24/7</p></div><div><h3 className="text-sm font-bold uppercase tracking-wider text-white">Напишіть нам</h3><div className="mt-4 flex gap-2"><a aria-label="Telegram" href="#top" className="social-link bg-sky-500/15 text-sky-300 hover:bg-sky-500 hover:text-white"><Send className="size-4" /></a><a aria-label="Viber" href="#top" className="social-link bg-violet-500/15 text-violet-300 hover:bg-violet-500 hover:text-white"><MessageCircle className="size-4" /></a><a aria-label="WhatsApp" href="#top" className="social-link bg-emerald-500/15 text-emerald-300 hover:bg-emerald-500 hover:text-white"><PhoneCall className="size-4" /></a></div><p className="mt-4 flex items-center gap-2 text-sm text-slate-400"><ShieldCheck className="size-4 text-orange-400" />Безпечна угода</p></div></div><div className="mt-12 border-t border-white/10 pt-6 text-center text-xs text-slate-500">© {new Date().getFullYear()} АвтоВикуп Харків. Усі права захищені.</div></div></footer>;
+  return <footer id="contacts" className="border-t border-white/10 bg-zinc-950 px-4 pb-8 pt-14 sm:px-6 lg:px-8"><div className="mx-auto max-w-7xl"><div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]"><div><a href="#top" className="flex items-center gap-2.5"><span className="flex size-10 items-center justify-center rounded-xl bg-orange-500 text-slate-950"><Car className="size-6" strokeWidth={2.5} /></span><span className="text-lg font-extrabold tracking-tight text-white">АвтоВикуп <span className="text-orange-400">Харків</span></span></a><p className="mt-4 max-w-sm text-sm leading-6 text-slate-400">Швидко та чесно викупимо автомобіль у будь-якому стані. Оформлення та розрахунок в день звернення.</p></div><div><h3 className="text-sm font-bold uppercase tracking-wider text-white">Контакти</h3><a href={PHONE_HREF} className="mt-4 flex items-center gap-2 text-base font-bold text-orange-400 hover:text-orange-300"><Phone className="size-4" />{phoneNumber}</a><p className="mt-3 flex items-center gap-2 text-sm text-slate-400"><MapPin className="size-4 text-orange-400" />м. Харків та область</p><p className="mt-2 flex items-center gap-2 text-sm text-slate-400"><Clock3 className="size-4 text-orange-400" />Працюємо 24/7</p></div><div><h3 className="text-sm font-bold uppercase tracking-wider text-white">Напишіть нам</h3><div className="mt-4"><SocialLinks /></div><p className="mt-4 flex items-center gap-2 text-sm text-slate-400"><ShieldCheck className="size-4 text-orange-400" />Безпечна угода</p></div></div><div className="mt-12 border-t border-white/10 pt-6 text-center text-xs text-slate-500">© {new Date().getFullYear()} АвтоВикуп Харків. Усі права захищені.</div></div></footer>;
 }
 
 export default function Home() {

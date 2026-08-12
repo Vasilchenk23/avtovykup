@@ -52,3 +52,96 @@ body {
   border-color: #fb923c;
   box-shadow: 0 0 0 3px rgb(249 115 22 / 0.15);
 }
+
+.form-input-error,
+.form-input-error:focus {
+  border-color: #f87171;
+  box-shadow: 0 0 0 3px rgb(248 113 113 / 0.12);
+}
+
+.privacy-content ul {
+  list-style: none;
+  margin-top: 0.5rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.privacy-content li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.privacy-content li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 9999px;
+  background: #f97316;
+  box-shadow: 0 0 0 3px rgb(249 115 22 / 0.12);
+}
+
+@keyframes lead-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes lead-toast-icon {
+  0% {
+    opacity: 0;
+    transform: scale(0.45) rotate(-18deg);
+  }
+  65% {
+    transform: scale(1.12) rotate(4deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes lead-toast-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.98);
+  }
+}
+
+@keyframes lead-toast-progress {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+
+.lead-toast {
+  animation:
+    lead-toast-in 360ms cubic-bezier(0.16, 1, 0.3, 1) both,
+    lead-toast-out 300ms var(--toast-exit-delay, 6200ms) ease-in forwards;
+}
+
+.lead-toast-icon {
+  animation: lead-toast-icon 520ms 100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.lead-toast-progress {
+  animation: lead-toast-progress 6.5s linear both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lead-toast,
+  .lead-toast-icon,
+  .lead-toast-progress {
+    animation: none;
+  }
+}

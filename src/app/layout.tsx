@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import FloatingCallButton from "../components/FloatingCallButton";
 import Header from "../components/Header";
 import SiteFooter from "../components/SiteFooter";
 import "./globals.css";
@@ -11,7 +12,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="uk" className="h-full antialiased">
-      <body className="min-h-full flex flex-col"><Header />{children}<SiteFooter /></body>
+      <body className="flex min-h-full flex-col">
+        <Header />
+        {children}
+        <SiteFooter />
+        <FloatingCallButton />
+      </body>
     </html>
   );
 }
