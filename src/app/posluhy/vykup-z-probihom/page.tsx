@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
 import ServicePage from "../../../components/ServicePage";
+import { createPageMetadata } from "../../../data/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Викуп авто з пробігом у Харкові",
   description:
     "Викуп вживаних авто будь-яких марок і років у Харкові. Оцінка за фото, виїзд фахівця та оформлення в день звернення.",
-};
+  path: "/posluhy/vykup-z-probihom",
+});
 
 export default function UsedCarBuyoutPage() {
   return (

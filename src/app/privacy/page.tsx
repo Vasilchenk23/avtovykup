@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import {
   Database,
   FileCheck2,
@@ -12,12 +11,14 @@ import {
 } from "lucide-react";
 import BackToHomeLink from "../../components/BackToHomeLink";
 import { PHONE_DISPLAY, PHONE_HREF, TELEGRAM_URL } from "../../data/contact";
+import { createPageMetadata } from "../../data/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Політика конфіденційності — АвтоВикуп Харків",
   description:
     "Політика обробки та захисту персональних даних користувачів сайту АвтоВикуп Харків.",
-};
+  path: "/privacy",
+});
 
 const sections = [
   {

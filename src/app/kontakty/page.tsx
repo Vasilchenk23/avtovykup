@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import { Clock3, MapPin, Phone, Send } from "lucide-react";
 import BackToHomeLink from "../../components/BackToHomeLink";
 import CarEvaluationForm from "../../components/CarEvaluationForm";
 import { PHONE_DISPLAY, PHONE_HREF, TELEGRAM_URL } from "../../data/contact";
+import { createPageMetadata } from "../../data/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Контакти АвтоВикуп Харків",
   description: "Контакти термінового автовикупу у Харкові: адреса, телефони, карта та форма оцінки.",
-};
+  path: "/kontakty",
+});
 
 export default function ContactsPage() {
   return (

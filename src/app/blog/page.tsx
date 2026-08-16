@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { CalendarDays, Tag } from "lucide-react";
 import BackToHomeLink from "../../components/BackToHomeLink";
 import CarEvaluationForm from "../../components/CarEvaluationForm";
 import { blogPosts } from "../../data/blogPosts";
+import { createPageMetadata } from "../../data/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Блог про продаж та викуп авто у Харкові",
   description:
     "Практичні поради про оцінку, терміновий продаж і викуп автомобілів у Харкові та області.",
-};
+  path: "/blog",
+});
 
 export default function BlogPage() {
   return (

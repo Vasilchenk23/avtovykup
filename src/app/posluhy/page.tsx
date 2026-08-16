@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import BackToHomeLink from "../../components/BackToHomeLink";
 import CarEvaluationForm from "../../components/CarEvaluationForm";
 import ServiceCardImage, { type ServiceImageIcon } from "../../components/ServiceCardImage";
+import { createPageMetadata } from "../../data/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Послуги автовикупу в Харкові",
   description:
     "Викуп авто після ДТП, на розбирання, за готівку, нерозмитнених і вживаних автомобілів у Харкові та області.",
-};
+  path: "/posluhy",
+});
 
 type Service = {
   title: string;
@@ -104,7 +105,7 @@ export default function ServicesPage() {
                 <div className="relative h-48 overflow-hidden rounded-t-xl">
                   <ServiceCardImage
                     src={service.image}
-                    alt={service.title}
+                    alt={`${service.title} у Харкові — терміновий автовикуп`}
                     fallbackIcon={service.fallbackIcon}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-transparent" />

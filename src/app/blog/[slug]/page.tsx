@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import BackToHomeLink from "@/components/BackToHomeLink";
 import CarEvaluationForm from "@/components/CarEvaluationForm";
 import { blogPosts, getBlogPost } from "@/data/blogPosts";
+import { OG_IMAGE_PATH, OG_IMAGE_URL, SITE_NAME, SITE_URL } from "@/data/seo";
 
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
@@ -27,12 +28,31 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   return {
     title: `${post.title} — АвтоВикуп Харків`,
     description: post.description,
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+    },
     openGraph: {
       type: "article",
       title: post.title,
       description: post.description,
+      url: `/blog/${post.slug}`,
       publishedTime: post.publishedAt,
       locale: "uk_UA",
+      siteName: SITE_NAME,
+      images: [
+        {
+          url: OG_IMAGE_PATH,
+          width: 1200,
+          height: 630,
+          alt: "АвтоВикуп Харків — Терміновий викуп авто за 1 годину",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: [OG_IMAGE_PATH],
     },
   };
 }
@@ -45,8 +65,41 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/blog/${post.slug}`,
+    },
+    image: [OG_IMAGE_URL],
+    author: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: OG_IMAGE_URL,
+      },
+    },
+    inLanguage: "uk-UA",
+  };
+
   return (
     <main className="min-h-screen overflow-x-hidden bg-slate-950 pt-28 text-white sm:pt-36">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <article className="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
         <div className="mx-auto w-full max-w-3xl">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">

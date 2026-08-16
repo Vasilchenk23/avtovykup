@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import { BadgeDollarSign, Clock3, ShieldCheck, Star, Truck } from "lucide-react";
 import BackToHomeLink from "../../components/BackToHomeLink";
 import CarEvaluationForm from "../../components/CarEvaluationForm";
+import { createPageMetadata } from "../../data/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Чому обирають АвтоВикуп Харків",
   description: "Переваги термінового автовикупу: чесна оцінка, гроші одразу, безкоштовний виїзд та евакуатор.",
-};
+  path: "/chomu-my",
+});
 
 const benefits = [
   [Clock3, "Швидкість", "Оцінка за 5 хвилин, викуп та розрахунок у день звернення."],

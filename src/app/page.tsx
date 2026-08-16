@@ -54,42 +54,46 @@ const categories = [
   },
 ];
 
-const cars = [
+const purchasedCars = [
   {
-    name: "Ford Focus",
-    year: "2017",
-    image:
-      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80",
+    title: "На розбирання та металобрухт",
+    vehicle: "Седан після пошкоджень",
+    photos: ["car-1.webp", "car-2.webp"],
   },
   {
-    name: "Daewoo Lanos",
-    year: "2013",
-    image:
-      "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=900&q=80",
+    title: "Бюджетні автомобілі",
+    vehicle: "Hyundai Accent",
+    photos: ["car-3.webp", "car-4.webp", "car-5.webp"],
   },
   {
-    name: "Skoda Octavia",
-    year: "2014",
-    image:
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80",
+    title: "Кросовери з пробігом",
+    vehicle: "BMW X5",
+    photos: ["car-6.webp", "car-7.webp", "car-8.webp"],
   },
   {
-    name: "Mazda CX-5",
-    year: "2013",
-    image:
-      "https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=900&q=80",
+    title: "Авто на єврономерах",
+    vehicle: "Škoda Octavia",
+    photos: ["car-9.webp"],
   },
   {
-    name: "ВАЗ 2110",
-    year: "2007",
-    image:
-      "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80",
+    title: "Авто на українській реєстрації",
+    vehicle: "BMW 5 Series",
+    photos: ["car-10.webp"],
   },
   {
-    name: "Audi A6",
-    year: "2012",
-    image:
-      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=80",
+    title: "Авто після ДТП",
+    vehicle: "Kia Sorento",
+    photos: ["car-11.webp"],
+  },
+  {
+    title: "Мототехніка",
+    vehicle: "Пітбайк",
+    photos: ["car-12.webp", "car-13.webp"],
+  },
+  {
+    title: "Преміум-сегмент",
+    vehicle: "BMW 3 Series",
+    photos: ["car-14.webp"],
   },
 ];
 
@@ -161,7 +165,7 @@ function Categories() {
 }
 
 function RecentCars() {
-  return <section id="reviews" className="border-y border-white/5 bg-zinc-900 px-4 py-20 sm:px-6 sm:py-24 lg:px-8"><span id="blog" className="relative -top-28 block" /><div className="mx-auto max-w-7xl"><SectionHeading eyebrow="Нещодавно" title="Останні викуплені авто" text="Приклади автомобілів, які ми вже викупили у власників." /><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{cars.map((car) => <article key={car.name} className="overflow-hidden rounded-2xl border border-white/8 bg-slate-950"><div className="relative aspect-[16/10] overflow-hidden"><Image src={car.image} alt={`${car.name} ${car.year}`} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition duration-500 hover:scale-105" /><span className="absolute left-3 top-3 rounded-md bg-slate-950/90 px-2.5 py-1 text-xs font-bold text-orange-300">Викуплено</span></div><div className="flex items-center justify-between p-4"><h3 className="font-bold text-white">{car.name}</h3><span className="text-sm text-slate-400">{car.year} рік</span></div></article>)}</div></div></section>;
+  return <section id="reviews" className="border-y border-white/5 bg-zinc-900 px-4 py-20 sm:px-6 sm:py-24 lg:px-8"><span id="blog" className="relative -top-28 block" /><div className="mx-auto max-w-7xl"><SectionHeading eyebrow="Реальні фото" title="Реальні приклади викупу авто" text="Автомобілі та мототехніка, які ми вже викупили у власників." /><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{purchasedCars.map((car) => <article key={car.title} className="group overflow-hidden rounded-2xl border border-white/8 bg-slate-950 transition duration-300 hover:-translate-y-1 hover:border-orange-400/40"><div className={`grid h-64 gap-1.5 overflow-hidden bg-slate-900 sm:h-72 ${car.photos.length === 1 ? "grid-cols-1" : car.photos.length === 2 ? "grid-cols-2" : "grid-cols-[1.2fr_1fr] grid-rows-2"}`}>{car.photos.map((photo, index) => <div key={photo} className={`relative overflow-hidden ${car.photos.length === 3 && index === 0 ? "row-span-2" : ""}`}><Image src={`/img/cars/${photo}`} alt={`${car.vehicle} — реальний викуп авто у Харкові, фото ${index + 1}`} fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition duration-500 group-hover:scale-105" /></div>)}</div><div className="flex items-center justify-between gap-4 p-4"><div><h3 className="font-bold text-white">{car.title}</h3><p className="mt-1 text-sm text-slate-400">{car.vehicle}</p></div><span className="shrink-0 rounded-md bg-orange-400/10 px-2.5 py-1 text-xs font-bold text-orange-300">{car.photos.length} фото</span></div></article>)}</div></div></section>;
 }
 
 function FAQ() {

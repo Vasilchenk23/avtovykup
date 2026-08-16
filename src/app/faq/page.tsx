@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import { ChevronDown } from "lucide-react";
 import BackToHomeLink from "../../components/BackToHomeLink";
 import CarEvaluationForm from "../../components/CarEvaluationForm";
+import { createPageMetadata } from "../../data/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "FAQ — часті запитання про автовикуп",
   description: "Відповіді на часті запитання про терміновий викуп авто у Харкові.",
-};
+  path: "/faq",
+});
 
 const questions = [
   ["Як відбувається оцінка вартості авто?", "Надішліть фото автомобіля у месенджер або заповніть форму. За 5 хвилин назвемо попередню вартість, а остаточно узгодимо її під час огляду."],
@@ -19,9 +20,26 @@ const questions = [
   ["Чи потрібна підготовка автомобіля до огляду?", "Ні. Ми оцінюємо авто в його фактичному стані, а евакуатор забере машину за потреби."],
 ];
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: questions.map(([question, answer]) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: answer,
+    },
+  })),
+};
+
 export default function FaqPage() {
   return (
     <main className="bg-slate-950 pt-28 text-white sm:pt-36">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
           <BackToHomeLink />
