@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import FloatingCallButton from "../components/FloatingCallButton";
 import Header from "../components/Header";
 import SiteFooter from "../components/SiteFooter";
@@ -64,6 +65,20 @@ const localBusinessSchema = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="uk" className="h-full antialiased">
+      <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18403130506"
+          strategy="afterInteractive"
+        />
+        <Script id="google-tag" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-18403130506');`}
+        </Script>
+      </head>
       <body className="flex min-h-full flex-col">
         <script
           type="application/ld+json"
