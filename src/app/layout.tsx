@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import FloatingCallButton from "../components/FloatingCallButton";
+import GoogleAdsCallConversionTracker from "../components/GoogleAdsCallConversionTracker";
 import Header from "../components/Header";
 import SiteFooter from "../components/SiteFooter";
 import { PHONE_HREF, TELEGRAM_URL, TIKTOK_URL } from "../data/contact";
@@ -65,21 +66,19 @@ const localBusinessSchema = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="uk" className="h-full antialiased">
-      <head>
+      <body className="flex min-h-full flex-col">
         {/* Google tag (gtag.js) */}
         <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18403130506"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18407818604"
           strategy="afterInteractive"
         />
-        <Script id="google-tag" strategy="afterInteractive">
+        <Script id="google-ads-tag" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'AW-18403130506');`}
+gtag('config', 'AW-18407818604');`}
         </Script>
-      </head>
-      <body className="flex min-h-full flex-col">
+        <GoogleAdsCallConversionTracker />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
