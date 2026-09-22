@@ -6,6 +6,7 @@ import {
   Check,
   CircleAlert,
   LoaderCircle,
+  MessageCircle,
   PhoneCall,
   Send,
   Sparkles,
@@ -13,11 +14,13 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { type CSSProperties, type FormEvent, useEffect, useRef, useState } from "react";
-import { PHONE_HREF } from "../data/contact";
+import { PHONE_DIGITS, PHONE_HREF, TELEGRAM_URL } from "../data/contact";
 
 type FormValues = {
   car: string;
   year: string;
+  condition: string;
+  price: string;
   phone: string;
 };
 
@@ -32,16 +35,24 @@ type Notification = {
 const initialValues: FormValues = {
   car: "",
   year: "",
+  condition: "",
+  price: "",
   phone: "",
 };
 
 function validateField(field: keyof FormValues, value: string) {
   const trimmedValue = value.trim();
 
+  if (!trimmedValue && field === "price") {
+    return undefined;
+  }
+
   if (!trimmedValue) {
     const messages: Record<keyof FormValues, string> = {
-      car: "Ой, вкажіть марку та модель автомобіля.",
+      car: "Вкажіть марку та модель автомобіля.",
       year: "Будь ласка, вкажіть рік випуску авто.",
+      condition: "Опишіть стан або проблему автомобіля.",
+      price: "",
       phone: "Залиште номер телефону, щоб ми могли вам зателефонувати.",
     };
     return messages[field];
@@ -104,7 +115,7 @@ export default function CarEvaluationForm({ title = "Швидка оцінка �
     if (Object.keys(validationErrors).length > 0) {
       setFieldErrors(validationErrors);
       const firstInvalidField = Object.keys(validationErrors)[0];
-      formRef.current?.querySelector<HTMLInputElement>(`[name="${firstInvalidField}"]`)?.focus();
+      formRef.current?.querySelector<HTMLElement>(`[name="${firstInvalidField}"]`)?.focus();
       return;
     }
 
@@ -190,6 +201,27 @@ export default function CarEvaluationForm({ title = "Швидка оцінка �
             onChange={(value) => updateField("year", value)}
             onBlur={() => handleBlur("year")}
           />
+          <TextAreaField
+            label="Стан або проблема"
+            name="condition"
+            value={values.condition}
+            placeholder="Що з авто? ДТП, мотор, КПП, документи..."
+            error={fieldErrors.condition}
+            disabled={loading}
+            onChange={(value) => updateField("condition", value)}
+            onBlur={() => handleBlur("condition")}
+          />
+          <FormField
+            label="Бажана ціна у $"
+            name="price"
+            value={values.price}
+            placeholder="Бажана ціна у $"
+            error={fieldErrors.price}
+            disabled={loading}
+            inputMode="decimal"
+            onChange={(value) => updateField("price", value)}
+            onBlur={() => handleBlur("price")}
+          />
           <FormField
             label="Ваш телефон"
             name="phone"
@@ -217,6 +249,27 @@ export default function CarEvaluationForm({ title = "Швидка оцінка �
               </>
             )}
           </button>
+          <div className="rounded-xl border border-white/10 bg-slate-950/50 p-3 text-center">
+            <p className="text-xs leading-5 text-slate-400">
+              Є фото авто? Надішліть прямо зараз у месенджер для швидкої оцінки:
+            </p>
+            <div className="mt-2 flex justify-center gap-2">
+              <a
+                href={TELEGRAM_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-sky-500/15 px-3 py-2 text-xs font-bold text-sky-200 transition hover:bg-sky-500/25"
+              >
+                <Send className="size-3.5" /> Telegram
+              </a>
+              <a
+                href={`viber://chat?number=%2B${PHONE_DIGITS}`}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-violet-500/15 px-3 py-2 text-xs font-bold text-violet-200 transition hover:bg-violet-500/25"
+              >
+                <MessageCircle className="size-3.5" /> Viber
+              </a>
+            </div>
+          </div>
         </form>
 
         <p className="mt-3 text-center text-xs leading-4 text-slate-500">
@@ -307,7 +360,7 @@ export default function CarEvaluationForm({ title = "Швидка оцінка �
                       type="button"
                       onClick={() => {
                         setNotification(null);
-                        formRef.current?.querySelector<HTMLInputElement>("input")?.focus();
+                        formRef.current?.querySelector<HTMLElement>("input")?.focus();
                       }}
                       className="inline-flex items-center gap-2 rounded-lg bg-orange-500 px-3.5 py-2 text-xs font-bold text-slate-950 transition hover:bg-orange-400"
                     >
@@ -337,7 +390,7 @@ type FormFieldProps = {
   placeholder: string;
   error?: string;
   disabled: boolean;
-  inputMode?: "numeric" | "tel";
+  inputMode?: "numeric" | "decimal" | "tel";
   autoComplete?: string;
   onChange: (value: string) => void;
   onBlur: () => void;
@@ -372,6 +425,56 @@ function FormField({
         aria-invalid={Boolean(error)}
         aria-describedby={error ? errorId : undefined}
         className={`form-input disabled:cursor-not-allowed disabled:opacity-60 ${
+          error ? "form-input-error" : ""
+        }`}
+      />
+      {error && (
+        <span id={errorId} className="mt-1.5 flex items-start gap-1.5 px-1 text-xs leading-4 text-red-300">
+          <CircleAlert className="mt-px size-3.5 shrink-0" />
+          {error}
+        </span>
+      )}
+    </label>
+  );
+}
+
+type TextAreaFieldProps = {
+  label: string;
+  name: keyof FormValues;
+  value: string;
+  placeholder: string;
+  error?: string;
+  disabled: boolean;
+  onChange: (value: string) => void;
+  onBlur: () => void;
+};
+
+function TextAreaField({
+  label,
+  name,
+  value,
+  placeholder,
+  error,
+  disabled,
+  onChange,
+  onBlur,
+}: TextAreaFieldProps) {
+  const errorId = `${name}-error`;
+
+  return (
+    <label className="block">
+      <span className="sr-only">{label}</span>
+      <textarea
+        name={name}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        onBlur={onBlur}
+        disabled={disabled}
+        placeholder={placeholder}
+        rows={3}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? errorId : undefined}
+        className={`form-input resize-none disabled:cursor-not-allowed disabled:opacity-60 ${
           error ? "form-input-error" : ""
         }`}
       />

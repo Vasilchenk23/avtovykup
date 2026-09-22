@@ -12,7 +12,7 @@ const services = [
   { label: "Викуп нерозмитнених", href: "/posluhy/vykup-nerozmytnenykh" },
   { label: "Терміновий викуп", href: "/posluhy/terminovyy-vykup" },
   { label: "Викуп за готівку", href: "/posluhy/vykup-za-hotivku" },
-  { label: "Викуп авто з пробігом", href: "/posluhy/vykup-z-probihom" },
+  { label: "Викуп авто не на ходу", href: "/posluhy/vykup-z-probihom" },
 ];
 
 const navigation = [

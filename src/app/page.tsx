@@ -1,6 +1,5 @@
 import {
   Car,
-  CarFront,
   ChevronDown,
   CircleCheck,
   Clock3,
@@ -23,33 +22,33 @@ const phoneNumber = PHONE_DISPLAY;
 
 const categories = [
   {
-    title: "Авто на українській реєстрації",
-    description: "Цілі, з пробігом та б/у автомобілі будь-яких марок.",
-    icon: CarFront,
-  },
-  {
     title: "Авто після ДТП",
-    description: "Биті, аварійні та ті, що не на ходу.",
+    description: "Биті, аварійні та пошкоджені авто будь-якої складності.",
     icon: Wrench,
   },
   {
-    title: "Нерозмитнені авто",
-    description: "Євробляхи та авто на іноземній реєстрації.",
-    icon: FileText,
-  },
-  {
-    title: "На розбирання та металобрухт",
-    description: "Заберемо старе або несправне авто евакуатором.",
+    title: "Не на ходу",
+    description: "Зі зламаним мотором, КПП або іншими серйозними несправностями.",
     icon: Truck,
   },
   {
-    title: "Кредитні та заставні авто",
-    description: "Допоможемо знайти прозоре рішення вашої ситуації.",
+    title: "Без документів",
+    description: "Утеряний техпаспорт, складна реєстрація та юридичні нюанси.",
+    icon: FileText,
+  },
+  {
+    title: "Євробляхи та іноземна реєстрація",
+    description: "Авто на європейських номерах, праворульні авто та пікапи.",
     icon: KeyRound,
   },
   {
-    title: "Мототехніка та комерційний транспорт",
-    description: "Мотоцикли, буси, пікапи та спецтехніка.",
+    title: "Терміновий викуп за 1 годину",
+    description: "Коли гроші потрібні сьогодні — оцінка, оформлення та розрахунок.",
+    icon: Clock3,
+  },
+  {
+    title: "Буси, пікапи та спецтехніка",
+    description: "Комерційний транспорт і техніка у складному стані.",
     icon: Fuel,
   },
 ];
@@ -61,12 +60,12 @@ const purchasedCars = [
     photos: ["car-1.webp", "car-2.webp"],
   },
   {
-    title: "Бюджетні автомобілі",
+    title: "Пошкоджене авто",
     vehicle: "Hyundai Accent",
     photos: ["car-3.webp", "car-4.webp", "car-5.webp"],
   },
   {
-    title: "Кросовери з пробігом",
+    title: "Авто з технічними несправностями",
     vehicle: "BMW X5",
     photos: ["car-6.webp", "car-7.webp", "car-8.webp"],
   },
@@ -76,7 +75,7 @@ const purchasedCars = [
     photos: ["car-9.webp"],
   },
   {
-    title: "Авто на українській реєстрації",
+    title: "Авто зі складною реєстрацією",
     vehicle: "BMW 5 Series",
     photos: ["car-10.webp"],
   },
@@ -91,7 +90,7 @@ const purchasedCars = [
     photos: ["car-12.webp", "car-13.webp"],
   },
   {
-    title: "Преміум-сегмент",
+    title: "Іномарка з пробігом",
     vehicle: "BMW 3 Series",
     photos: ["car-14.webp"],
   },
@@ -121,7 +120,11 @@ const faqs = [
 ];
 
 function Hero() {
-  const benefits = ["Оцінка за 5 хв", "Безкоштовний евакуатор", "Розрахунок готівкою на місці"];
+  const benefits = [
+    "ДТП будь-якої складності",
+    "Евакуатор, якщо авто не їде",
+    "Готівка або переказ у день звернення",
+  ];
 
   return (
     <section id="top" className="relative isolate overflow-hidden bg-slate-950 pt-28 text-white sm:pt-36">
@@ -132,13 +135,14 @@ function Hero() {
         <div className="max-w-3xl">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-orange-400/25 bg-orange-400/10 px-3 py-1.5 text-xs font-semibold text-orange-300">
             <Sparkles className="size-3.5" />
-            Викуп авто в Харкові 24/7
+            Викуп проблемних авто у Харкові 24/7
           </div>
           <h1 className="text-4xl font-black leading-[1.05] tracking-tight text-balance sm:text-5xl lg:text-6xl">
-            Терміновий автовикуп у Харкові та області <span className="text-orange-400">— Гроші за 1 годину</span>
+            Потрібно терміново позбутися проблемного авто? <span className="text-orange-400">Гроші — за 1 годину</span>
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-            Викупимо авто в будь-якому стані. Оцінка по фото за 5 хвилин, безкоштовний виїзд та евакуатор.
+            Викупимо авто після ДТП, не на ходу, зі зламаним мотором або КПП, без документів та на іноземній
+            реєстрації. Фото → попередня оцінка → виїзд або евакуатор → розрахунок.
           </p>
           <ul className="mt-8 grid gap-3 text-sm font-medium text-slate-200 sm:grid-cols-3 sm:gap-4">
             {benefits.map((benefit) => (
@@ -148,6 +152,12 @@ function Hero() {
               </li>
             ))}
           </ul>
+          <aside className="mt-8 rounded-xl border border-amber-400/30 bg-amber-400/10 p-4 text-sm leading-6 text-amber-100">
+            <strong>Важливо:</strong> наш профіль — іномарки, комерційний транспорт та пікапи від 2000-х років. Ми
+            викуповуємо авто з дисконтом за терміновість.
+            <br />
+            ⛔ Не викуповуємо: радянський автопром (ВАЗ, ГАЗ, ЗАЗ, Москвич) та металобрухт вартістю до $1,000.
+          </aside>
         </div>
 
         <CarEvaluationForm />

@@ -1,6 +1,8 @@
 type LeadPayload = {
   car: string;
   year: string;
+  condition: string;
+  price: string;
   phone: string;
   source: string;
 };
@@ -16,15 +18,24 @@ function getLeadPayload(value: unknown): LeadPayload | null {
   const body = value as Record<string, unknown>;
   const car = typeof body.car === "string" ? body.car.trim() : "";
   const year = typeof body.year === "string" ? body.year.trim() : "";
+  const condition = typeof body.condition === "string" ? body.condition.trim() : "";
+  const price = typeof body.price === "string" ? body.price.trim() : "";
   const phone = typeof body.phone === "string" ? body.phone.trim() : "";
   const source = typeof body.source === "string" ? body.source.trim() : "";
 
-  if (!car || !phone) return null;
-  if (car.length > 120 || year.length > 20 || phone.length > 50 || source.length > 200) {
+  if (!car || !year || !condition || !phone) return null;
+  if (
+    car.length > 120 ||
+    year.length > 20 ||
+    condition.length > 1000 ||
+    price.length > 100 ||
+    phone.length > 50 ||
+    source.length > 200
+  ) {
     return null;
   }
 
-  return { car, year, phone, source };
+  return { car, year, condition, price, phone, source };
 }
 
 function escapeMarkdown(value: string) {
@@ -77,7 +88,7 @@ export async function POST(request: Request) {
 
   if (!lead) {
     return Response.json(
-      { error: "Вкажіть марку автомобіля та номер телефону." },
+      { error: "Вкажіть марку, рік, стан авто та номер телефону." },
       { status: 400 },
     );
   }
@@ -109,7 +120,9 @@ export async function POST(request: Request) {
     "",
     "🚗 *АВТОМОБІЛЬ*",
     `▫️ *Марка / модель:* ${escapeMarkdown(lead.car)}`,
-    `▫️ *Рік випуску:* ${escapeMarkdown(lead.year || "Не вказано")}`,
+    `▫️ *Рік випуску:* ${escapeMarkdown(lead.year)}`,
+    `▫️ *Стан / проблема:* ${escapeMarkdown(lead.condition)}`,
+    `▫️ *Бажана ціна:* ${lead.price ? `$${escapeMarkdown(lead.price)}` : "Не вказано"}`,
     "",
     "👤 *КОНТАКТНІ ДАНІ*",
     `📞 *Телефон:* ${escapeMarkdown(formattedPhone)}`,

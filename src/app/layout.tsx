@@ -8,9 +8,11 @@ import { PHONE_HREF, TELEGRAM_URL, TIKTOK_URL } from "../data/contact";
 import { DEFAULT_DESCRIPTION, OG_IMAGE_PATH, SITE_NAME, SITE_URL } from "../data/seo";
 import "./globals.css";
 
+const HOME_TITLE = "Терміновий викуп проблемних авто у Харкові — гроші за 1 годину";
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "АвтоВикуп Харків — Терміновий викуп авто за 1 годину",
+  title: HOME_TITLE,
   description: DEFAULT_DESCRIPTION,
   applicationName: SITE_NAME,
   alternates: {
@@ -18,7 +20,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    title: "АвтоВикуп Харків — Терміновий викуп авто за 1 годину",
+    title: HOME_TITLE,
     description: DEFAULT_DESCRIPTION,
     url: SITE_URL,
     siteName: SITE_NAME,
@@ -28,13 +30,13 @@ export const metadata: Metadata = {
         url: OG_IMAGE_PATH,
         width: 1200,
         height: 630,
-        alt: "АвтоВикуп Харків — Терміновий викуп авто за 1 годину",
+        alt: "Терміновий викуп проблемних авто у Харкові після ДТП та несправностей",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "АвтоВикуп Харків — Терміновий викуп авто за 1 годину",
+    title: HOME_TITLE,
     description: DEFAULT_DESCRIPTION,
     images: [OG_IMAGE_PATH],
   },
@@ -42,12 +44,12 @@ export const metadata: Metadata = {
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "AutoDealer",
+  "@type": "AutomotiveBusiness",
+  "@id": `${SITE_URL}#business`,
   name: SITE_NAME,
   url: SITE_URL,
   image: `${SITE_URL}${OG_IMAGE_PATH}`,
   telephone: PHONE_HREF.replace("tel:", ""),
-  priceRange: "$$",
   address: {
     "@type": "PostalAddress",
     streetAddress: "вул. Весніна, 2А",
@@ -59,14 +61,29 @@ const localBusinessSchema = {
     { "@type": "City", name: "Харків" },
     { "@type": "AdministrativeArea", name: "Харківська область" },
   ],
-  openingHours: "Mo-Su 00:00-24:00",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "https://schema.org/Monday",
+        "https://schema.org/Tuesday",
+        "https://schema.org/Wednesday",
+        "https://schema.org/Thursday",
+        "https://schema.org/Friday",
+        "https://schema.org/Saturday",
+        "https://schema.org/Sunday",
+      ],
+      opens: "00:00",
+      closes: "23:59",
+    },
+  ],
   sameAs: [TELEGRAM_URL, TIKTOK_URL],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="uk" className="h-full antialiased">
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-full flex-col pb-20 sm:pb-0">
         {/* Google tag (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18407818604"
